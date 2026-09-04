@@ -1,19 +1,11 @@
-# SINAPSE
+# sinapse-project
 
-Website for the SINAPSE NSF project, published via GitHub Pages.
+Web page of the SINAPSE project (NSF award #2514139), served via GitHub
+Pages at https://project-sinapse.org/.
 
-## How it works
+Static HTML, no build step: edit `index.html`, merge to `main`, Pages
+redeploys. Partner logos live under `assets/logos/`. The `CNAME` file
+binds the custom domain; DNS for project-sinapse.org must point at
+GitHub Pages for it to serve under that name.
 
-The site is plain HTML/CSS with no build step. Every push to `main` deploys the repo root to GitHub Pages via `.github/workflows/pages.yml`.
-
-## Local development
-
-Open `index.html` in a browser, or serve the directory:
-
-```sh
-python3 -m http.server
-```
-
-## License
-
-[MIT](LICENSE)
+The SDK documentation lives at https://sinapse-sdk.readthedocs.io/.

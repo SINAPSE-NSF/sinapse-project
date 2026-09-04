@@ -1,87 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SINAPSE</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SINAPSE</title>
+<meta name="description" content="SINAPSE: Scalable Infrastructure for AI-coupled Predictive Simulation Enhancement. An NSF CSSI project building an SDK for AI-coupled HPC workflows.">
+<style>
+  :root {
+    --ink:    #1c2733;
+    --accent: #1b4f8a;
+    --accent2:#2d7dd2;
+    --paper:  #ffffff;
+    --ground: #f5f7fa;
+    --line:   #dde4ec;
+    --muted:  #5a6a7a;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font: 16px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink); background: var(--paper);
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
 
-    body {
-      font-family: "Courier New", Courier, monospace;
-      background: #fff;
-      color: #000;
-      max-width: 72ch;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      line-height: 1.5;
-    }
+  header {
+    background: linear-gradient(160deg, #12365e 0%, #1b4f8a 60%, #2d7dd2 100%);
+    color: #fff; padding: 4.5rem 0 4rem;
+  }
+  header h1 { font-size: 3.2rem; letter-spacing: 0.04em; }
+  header .expand { font-size: 1.15rem; opacity: 0.92; max-width: 40em; margin-top: 0.4rem; }
+  header .tag { font-size: 1rem; opacity: 0.8; margin-top: 1rem; max-width: 44em; }
+  .cta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 0.8rem 1.6rem; border-radius: 6px;
+    font-weight: 600; text-decoration: none;
+  }
+  .btn-primary { background: #fff; color: var(--accent); }
+  .btn-primary:hover { background: #e8f0fa; text-decoration: none; }
+  .btn-ghost { border: 1.5px solid rgba(255,255,255,0.7); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
 
-    header {
-      border: 3px solid #000;
-      padding: 1rem;
-      margin-bottom: 2rem;
-    }
+  section { padding: 3rem 0; }
+  section.alt { background: var(--ground); }
+  h2 { font-size: 1.6rem; color: var(--accent); margin-bottom: 1.2rem; }
+  p + p { margin-top: 0.9rem; }
 
-    h1 {
-      font-size: 2.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+  .grid {
+    display: grid; gap: 1.1rem; margin-top: 1.4rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+  }
+  .card h3 { font-size: 1.08rem; margin-bottom: 0.35rem; }
+  .card p { font-size: 0.93rem; color: var(--muted); }
+  .card .links { margin-top: 0.6rem; font-size: 0.9rem; }
+  .card .links a + a { margin-left: 0.9rem; }
 
-    h2 {
-      text-transform: uppercase;
-      border-bottom: 3px solid #000;
-      margin: 2rem 0 1rem;
-    }
+  .logos {
+    display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center;
+    justify-content: center; margin-top: 1.6rem;
+  }
+  .logos img { height: 72px; width: auto; }
+  .logos img.wide { height: 52px; }
 
-    p {
-      margin-bottom: 1rem;
-    }
+  .funding { display: flex; gap: 1.6rem; align-items: center; margin-top: 1rem; }
+  .funding img { height: 84px; flex: none; }
+  .funding p { font-size: 0.9rem; color: var(--muted); }
 
-    a {
-      color: #00f;
-    }
-
-    a:visited {
-      color: #551a8b;
-    }
-
-    mark {
-      background: #ff0;
-    }
-
-    footer {
-      margin-top: 3rem;
-      border-top: 3px solid #000;
-      padding-top: 1rem;
-      font-size: 0.85rem;
-    }
-  </style>
+  footer {
+    border-top: 1px solid var(--line); padding: 1.6rem 0 2.2rem;
+    font-size: 0.88rem; color: var(--muted);
+  }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
+</style>
 </head>
 <body>
-  <header>
+
+<header>
+  <div class="wrap">
     <h1>SINAPSE</h1>
-    <p>The SINAPSE SDK is a curated collection of software components for AI-coupled HPC workflows.</p>
-  </header>
+    <p class="expand">Scalable Infrastructure for AI-coupled Predictive Simulation Enhancement</p>
+    <p class="tag">An NSF Cyberinfrastructure for Sustained Scientific Innovation (CSSI) project
+       building an open software development kit for AI-coupled HPC workflows.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://sinapse-sdk.readthedocs.io/en/latest/">SDK Documentation</a>
+      <a class="btn btn-ghost" href="https://sinapse-sdk.org/">SDK Site</a>
+      <a class="btn btn-ghost" href="https://github.com/SINAPSE-NSF">GitHub</a>
+    </div>
+  </div>
+</header>
 
-  <main>
-    <h2>Hello, world</h2>
-    <p><mark>This site is under construction.</mark> Content coming soon.</p>
-
+<section>
+  <div class="wrap">
     <h2>About</h2>
-    <p>Project description goes here.</p>
+    <p>Scientific computing increasingly couples AI methods with traditional HPC simulation:
+       AI models replace simulation stages, learn from and steer running simulations, and plan
+       entire computational campaigns. SINAPSE provides the software infrastructure for this
+       class of applications: extensible, reusable components for executing AI and HPC tasks
+       within one environment, and problem-solving frameworks that package the most common
+       AI-coupled workflow patterns for domain scientists.</p>
+    <p>These capabilities are delivered as the SINAPSE SDK, a curated collection of
+       interoperable, individually packaged components, following the delivery model of the
+       DOE ExaWorks SDK. All SDK components are open source, distributed via PyPI and
+       conda-forge, documented on ReadTheDocs, and tested on HPC platforms.</p>
+    <p>SINAPSE is a collaboration of Rutgers University (lead), the University of Chicago,
+       Princeton University, and the University of California San Diego, with science drivers
+       in biomolecular kinetics and computational materials design.</p>
+  </div>
+</section>
 
-    <h2>Contact</h2>
-    <p>Contact information goes here.</p>
-  </main>
+<section class="alt">
+  <div class="wrap">
+    <h2>SDK Components</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>RHAPSODY</h3>
+        <p>Runtime for heterogeneous AI-HPC workflows: services (e.g. inference servers)
+           run alongside simulation tasks on the same allocation.</p>
+        <p class="links"><a href="https://github.com/radical-cybertools/rhapsody">GitHub</a>
+           <a href="https://pypi.org/project/rhapsody-py/">PyPI</a></p>
+      </div>
+      <div class="card">
+        <h3>RADICAL-AsyncFlow</h3>
+        <p>Asyncio-based workflow scripting library for expressing dynamic task graphs
+           in plain Python.</p>
+        <p class="links"><a href="https://github.com/radical-cybertools/radical.asyncflow">GitHub</a>
+           <a href="https://pypi.org/project/radical.asyncflow/">PyPI</a></p>
+      </div>
+      <div class="card">
+        <h3>RADICAL-ORBIT</h3>
+        <p>Broker-based framework connecting applications with HPC resources through
+           firewall-friendly endpoints.</p>
+        <p class="links"><a href="https://github.com/radical-cybertools/radical.orbit">GitHub</a>
+           <a href="https://pypi.org/project/radical.orbit/">PyPI</a></p>
+      </div>
+      <div class="card">
+        <h3>Rootstock</h3>
+        <p>Machine-learned interatomic potentials as a service on shared HPC clusters,
+           integrated with ASE and LAMMPS.</p>
+        <p class="links"><a href="https://github.com/Garden-AI/rootstock">GitHub</a></p>
+      </div>
+      <div class="card">
+        <h3>QuAcc</h3>
+        <p>Computational materials science workflow platform for high-throughput
+           quantum chemistry.</p>
+        <p class="links"><a href="https://github.com/Quantum-Accelerators/quacc">GitHub</a></p>
+      </div>
+      <div class="card">
+        <h3>seekrflow</h3>
+        <p>Automation layer for SEEKR multiscale milestoning calculations of
+           binding and unbinding kinetics.</p>
+        <p class="links"><a href="https://github.com/seekrcentral/seekrflow">GitHub</a></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>This work is supported by NSF Award #2514142: “Collaborative Research: Frameworks: SINAPSE: Scalable Infrastructure for AI-coupled Predictive Simulation Enhancement”</p>
-  </footer>
+<section>
+  <div class="wrap">
+    <h2>Partners</h2>
+    <div class="logos">
+      <img class="wide" src="assets/logos/rutgers.png"   alt="Rutgers, The State University of New Jersey">
+      <img src="assets/logos/uchicago.png"  alt="The University of Chicago">
+      <img src="assets/logos/princeton.png" alt="Princeton University">
+      <img src="assets/logos/ucsd.png"      alt="University of California San Diego">
+      <img src="assets/logos/radical.png"   alt="RADICAL Lab">
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Funding</h2>
+    <div class="funding">
+      <img src="assets/logos/nsf.png" alt="National Science Foundation">
+      <p>This material is based upon work supported by the National Science Foundation
+         under award #2514139. Any opinions, findings, and conclusions or recommendations
+         expressed in this material are those of the authors and do not necessarily
+         reflect the views of the National Science Foundation.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>SINAPSE · project-sinapse.org</span>
+    <span><a href="https://sinapse-sdk.readthedocs.io/en/latest/">SDK docs</a> ·
+          <a href="https://sinapse-sdk.org/">SDK site</a> ·
+          <a href="https://github.com/SINAPSE-NSF">GitHub</a></span>
+  </div>
+</footer>
+
 </body>
 </html>
